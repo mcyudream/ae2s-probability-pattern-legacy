@@ -1,0 +1,11 @@
+.gradle/
+.dev/
+build/
+run/
+libs/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.log
+!verification/**/console.log

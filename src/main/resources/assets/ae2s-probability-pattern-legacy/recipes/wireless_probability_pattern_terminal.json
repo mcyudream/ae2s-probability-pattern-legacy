@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    " T ",
+    " E "
+  ],
+  "key": {
+    "W": {
+      "item": "ae2:wireless_receiver"
+    },
+    "T": {
+      "item": "statpatterns:probability_pattern_terminal"
+    },
+    "E": {
+      "item": "ae2:dense_energy_cell"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "statpatterns:wireless_probability_pattern_terminal"
+  }
+}

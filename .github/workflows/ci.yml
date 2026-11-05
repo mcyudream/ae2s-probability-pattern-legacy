@@ -1,0 +1,91 @@
+name: Build, verify and release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '25.0.5+8'
+      - uses: gradle/actions/setup-gradle@0b6dd653ba04f4f93bf581ec31e66cbd7dcb644d # v4
+      - name: Build, test and prepare Minecraft assets
+        run: bash tools/dev.sh --no-daemon build reobfRuntimeHarnessJar downloadAssets --console=plain
+      - name: Verify packaged identity and dependency isolation
+        run: python3 tools/verify_package.py
+      - name: Install client verification libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y xvfb xauth libgl1-mesa-dri libglx-mesa0 libopenal1
+      - name: Run official Cleanroom 0.4.0 client and server with and without Ponder
+        run: xvfb-run -a -s '-screen 0 1920x1080x24' python3 tools/verify.py --with-hei
+      - name: Verify runtime reports match the built jar
+        run: python3 tools/verify_package.py --require-runtime
+      - name: Collect release assets and require accepted hashes for tags
+        shell: bash
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == 'tag' ]]; then
+            python3 tools/prepare_release.py --tag "$GITHUB_REF_NAME"
+          else
+            python3 tools/prepare_release.py --require-runtime
+          fi
+          cat build/release/SHA256SUMS >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-assets
+          if-no-files-found: error
+          path: build/release/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: verification-reports
+          if-no-files-found: warn
+          path: |
+            verification/
+            build/test-results/test/
+            build/reports/tests/
+            run/cleanroom-0.4.0/**/console.log
+            run/cleanroom-0.4.0/**/result.json
+            run/cleanroom-0.4.0/**/runtime.json
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: release-assets
+          path: dist
+      - name: Verify downloaded assets
+        working-directory: dist
+        run: sha256sum --check SHA256SUMS
+      - name: Publish stable GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/*.jar dist/SHA256SUMS dist/VERIFICATION.json \
+            --verify-tag --latest --title "AE2S Probability Pattern Legacy ${GITHUB_REF_NAME#v}" \
+            --notes-file dist/RELEASE-NOTES.md

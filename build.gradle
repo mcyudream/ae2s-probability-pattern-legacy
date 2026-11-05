@@ -1,0 +1,85 @@
+plugins {
+    id 'java-library'
+    id 'com.cleanroommc.cleanroomgradle'
+}
+group = 'com.tz.statpatterns'
+version = '1.0.1'
+base.archivesName = 'ae2s-probability-pattern-legacy'
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+    withSourcesJar()
+}
+repositories { mavenCentral() }
+def ponderJar = layout.buildDirectory.file('dependencies/ponder/ponder-legacy-1.4.0.jar')
+tasks.register('preparePonderApi') {
+    outputs.file ponderJar
+    doLast {
+        def target = ponderJar.get().asFile
+        target.parentFile.mkdirs()
+        def local = file('../../.dev/revo-ui/published-1.4.0/ponder-legacy-1.4.0.jar')
+        if (!target.exists()) {
+            if (local.exists()) java.nio.file.Files.copy(local.toPath(), target.toPath())
+            else providers.exec { commandLine 'curl', '--fail', '--location', '--retry', '3', '--output', target.absolutePath,
+                'https://github.com/mcyudream/ponder-legacy/releases/download/v1.4.0/ponder-legacy-1.4.0.jar' }.result.get().assertNormalExitValue()
+        }
+        if (java.security.MessageDigest.getInstance('SHA-256').digest(target.bytes).encodeHex().toString()
+            != '4c02d70c6f38ddf5305fa4be47a5e410e693c57f2cd8576ed5f78f8b7f32f14b')
+            throw new GradleException('Pinned Ponder API checksum mismatch')
+    }
+}
+apply from: 'gradle/ae2-supergiant.gradle'
+dependencies {
+    implementation cleanroom.userdev(cleanroom_version)
+    compileOnly files(ponderJar).builtBy('preparePonderApi')
+    compileOnly 'org.jetbrains:annotations:26.0.2'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly 'it.unimi.dsi:fastutil:8.5.15'
+    compileOnly 'org.slf4j:slf4j-api:2.0.17'
+    compileOnly(deobf('curse.maven:baubles-227083:2518667')) { transitive = false }
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+}
+sourceSets {
+    runtimeHarness {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += output + compileClasspath
+    }
+}
+configurations {
+    testImplementation.extendsFrom compileOnly
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-proc:none']
+}
+tasks.withType(Test).configureEach { useJUnitPlatform() }
+tasks.register('verifyAssets', Exec) { commandLine 'python3', 'tools/verify-assets.py' }
+tasks.named('check') { dependsOn 'verifyAssets' }
+tasks.withType(net.minecraftforge.renamer.gradle.RenameJar).configureEach {
+    javaLauncher.set(javaToolchains.launcherFor { spec -> spec.languageVersion.set(JavaLanguageVersion.of(25)) })
+}
+tasks.register('runtimeHarnessJar', Jar) {
+    dependsOn 'runtimeHarnessClasses'
+    archiveFileName = 'statpatterns-verification-mcp.jar'
+    destinationDirectory = layout.buildDirectory.dir('verification')
+    from sourceSets.runtimeHarness.output
+}
+extensions.getByType(net.minecraftforge.renamer.gradle.RenamerExtension).classes('reobfRuntimeHarnessJar', tasks.named('runtimeHarnessJar')) {
+    map.from tasks.named('reobfJar').get().map
+    libraries.from sourceSets.runtimeHarness.compileClasspath
+    output = layout.buildDirectory.file('verification/statpatterns-verification.jar')
+}
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('mcmod.info') { expand version: project.version }
+}
+jar {
+    manifest { attributes 'Implementation-Version': project.version, 'ModType': 'CRL',
+        'FMLCorePlugin': 'com.tz.statpatterns.core.StatPatternsCore',
+        'FMLCorePluginContainsFMLMod': 'true' }
+    from 'LICENSE', 'NOTICE.md', 'upstream-lock.json', 'dependency-lock.json'
+}
+apply from: 'gradle/cleanroom040-mixin.gradle'
+// Every injection targets stable AE2S member names. No Minecraft string target needs a refmap.
+tasks.withType(JavaCompile).configureEach { options.annotationProcessorPath = files() }
+

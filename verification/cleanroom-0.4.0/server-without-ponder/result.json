@@ -1,0 +1,29 @@
+{
+  "cleanroom": "0.4.0",
+  "side": "server",
+  "exit": 0,
+  "loader_version_seen": true,
+  "server_ready": true,
+  "timed_out": false,
+  "gameplay_report": {
+    "result": "PASS",
+    "cleanroom": "0.4.0",
+    "java": "25.0.5",
+    "ae2s": "1.1.0+a47dfe029",
+    "ponder": false,
+    "checks": [
+      "Cleanroom 0.4.0 packaged addon creates native powered provider/CPU/storage/terminal nodes",
+      "Wired encoding consumes one blank; probability/confidence, multi-output amount and ghost slots round-trip",
+      "Per-request CPU task identities and scaled inputs survive actual AE2S pattern serialization",
+      "Native planner sizes both probability stages independently, including two outputs per success",
+      "Actual native CPU saves and reloads the pending scaled job before machine execution",
+      "Real native providers feed external chest machines, return chain output, finish CPU and conserve exact inputs",
+      "A repeated request after intermediate stock changes sizes only the missing intermediate quantity"
+    ],
+    "planned_iron": 80,
+    "planned_gold": 30,
+    "machine_iron_attempts": 40,
+    "machine_gold_attempts": 10
+  },
+  "result": "FUNCTIONAL_PASS"
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.tz.statpatterns.math.StatPatternsSizingTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-11-05T17:44:43.240Z" hostname="yudream-dev" time="0.146">
+  <properties/>
+  <testcase name="impossibleAmountFailsWithoutWrapping()" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.025"/>
+  <testcase name="deterministicAtLongLimit()" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.001"/>
+  <testcase name="rareOutputDoesNotIteratePerAttempt()" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.006"/>
+  <testcase name="rejectsInvalidInput()" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.004"/>
+  <testcase name="[1] 31, .5" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.02"/>
+  <testcase name="[2] 1000, .8" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.001"/>
+  <testcase name="[3] 1000000000000, .01" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.0"/>
+  <testcase name="[1] 1, .5, .05" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.003"/>
+  <testcase name="[2] 4, .8, .05" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.001"/>
+  <testcase name="[3] 10, .5, .01" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.001"/>
+  <testcase name="[4] 30, .8, .01" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.0"/>
+  <testcase name="[5] 1, .00001, .05" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.0"/>
+  <testcase name="[6] 5, .999999, .01" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.002"/>
+  <testcase name="[7] 1, .2, .9" classname="com.tz.statpatterns.math.StatPatternsSizingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

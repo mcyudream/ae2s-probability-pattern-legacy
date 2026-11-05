@@ -1,0 +1,17 @@
+{
+  "cleanroom": "0.4.0",
+  "artifact_sha256": "6ef33ddf52f728cc555afc0029bd0b90cd25d1f3263b74365235b5bffe1b3969",
+  "scenarios": {
+    "server-without-ponder": "FUNCTIONAL_PASS",
+    "client-without-ponder": "FUNCTIONAL_PASS",
+    "server-with-ponder": "FUNCTIONAL_PASS",
+    "client-with-ponder": "FUNCTIONAL_PASS"
+  },
+  "unit_tests": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "jar_audit": "PASS: no harness, Minecraft, AE2S, Ponder or HEI classes bundled"
+}

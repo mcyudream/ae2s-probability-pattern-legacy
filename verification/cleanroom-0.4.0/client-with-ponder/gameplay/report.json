@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "cleanroom": "0.4.0",
+  "java": "25.0.5",
+  "ae2s": "1.1.0+a47dfe029",
+  "ponder": true,
+  "checks": [
+    "Cleanroom 0.4.0 packaged addon creates native powered provider/CPU/storage/terminal nodes",
+    "Wired encoding consumes one blank; probability/confidence, multi-output amount and ghost slots round-trip",
+    "Per-request CPU task identities and scaled inputs survive actual AE2S pattern serialization",
+    "Native planner sizes both probability stages independently, including two outputs per success",
+    "Actual native CPU saves and reloads the pending scaled job before machine execution",
+    "Real native providers feed external chest machines, return chain output, finish CPU and conserve exact inputs",
+    "A repeated request after intermediate stock changes sizes only the missing intermediate quantity",
+    "Packaged client enters world and completes the real chained CPU job",
+    "Real wired GUI action packets change chance/confidence and encode on the server",
+    "Rendered wired-en_us.png without OpenGL errors",
+    "Rendered wired-zh_cn.png without OpenGL errors",
+    "Rendered wireless-en_us.png without OpenGL errors",
+    "Charged/linked wireless terminal encodes through native packets and retains settings in AE2S universal terminal",
+    "Rendered universal-en_us.png without OpenGL errors",
+    "Rendered hei-transfer-en_us.png without OpenGL errors",
+    "Actual HEI transfer handler imports ingredients, extracts 42% chance and sends primary-only recipe to server",
+    "Optional Ponder registers three subjects, loads structure, plays full timeline and rewinds: en_us",
+    "Rendered ponder-en_us.png without OpenGL errors",
+    "Optional Ponder registers three subjects, loads structure, plays full timeline and rewinds: zh_cn",
+    "Rendered ponder-zh_cn.png without OpenGL errors"
+  ],
+  "planned_iron": 80,
+  "planned_gold": 30,
+  "machine_iron_attempts": 40,
+  "machine_gold_attempts": 10
+}

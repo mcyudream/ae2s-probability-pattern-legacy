@@ -1,0 +1,8 @@
+{
+  "parent": "ae2:part/display_off",
+  "textures": {
+    "lightsBright": "statpatterns:part/terminal_bright",
+    "lightsMedium": "statpatterns:part/terminal_medium",
+    "lightsDark": "statpatterns:part/terminal_dark"
+  }
+}

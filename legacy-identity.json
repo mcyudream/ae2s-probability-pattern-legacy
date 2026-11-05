@@ -1,0 +1,20 @@
+{
+  "directory": "probability-pattern",
+  "modid": "ae2s-probability-pattern-legacy",
+  "name": "AE2S Probability Pattern Legacy",
+  "github_repository": "mcyudream/ae2s-probability-pattern-legacy",
+  "release_tag": "v1.0.1",
+  "resource_namespace": "statpatterns",
+  "minecraft": "1.12.2",
+  "cleanroom_baseline": "0.4.0",
+  "java": 25,
+  "ae2_implementation": "Applied Energistics 2 Supergiant (AE2S)",
+  "ae2_loader_modid": "ae2",
+  "author": "yudream",
+  "original_authors": "TaoLe-si",
+  "original_repository": "https://github.com/TaoLe-si/Probability-Pattern",
+  "status": "verified-cleanroom-0.4.0",
+  "verified_jar_sha256": "6ef33ddf52f728cc555afc0029bd0b90cd25d1f3263b74365235b5bffe1b3969",
+  "verification_document": "verification/README.md",
+  "verified_main_source_sha256": "50d3f8a6e416da25e6b1a63c045318f997405f28ec5c45e2aea89261d216d710"
+}

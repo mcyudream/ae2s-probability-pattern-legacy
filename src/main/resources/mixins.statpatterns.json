@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8.7",
+  "package": "com.tz.statpatterns.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "plugin": "com.tz.statpatterns.core.MixinSelection",
+  "mixins": [
+    "CraftingCalculationMixin",
+    "CraftingTreeNodeMixin",
+    "CraftingServiceMixin",
+    "PatternProviderMixin",
+    "PatternEncodingLogicMixin",
+    "PatternEncodingContainerMixin"
+  ],
+  "client": ["RecipeTransferMixin"],
+  "injectors": { "defaultRequire": 1 }
+}
+

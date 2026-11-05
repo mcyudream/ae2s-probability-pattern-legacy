@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "ae2s-probability-pattern-legacy",
+    "name": "AE2S Probability Pattern Legacy",
+    "description": "Probability processing patterns and wired/wireless encoding terminals for AE2 Supergiant.",
+    "version": "${version}",
+    "mcversion": "1.12.2",
+    "authorList": ["yudream", "TaoLe-si (original)"],
+    "logoFile": "assets/statpatterns/textures/logo/probability_pattern_logo.png"
+  }
+]
+

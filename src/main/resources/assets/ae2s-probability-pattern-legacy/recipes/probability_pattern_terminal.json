@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PT"
+  ],
+  "key": {
+    "P": {
+      "item": "ae2:calculation_processor"
+    },
+    "T": {
+      "item": "ae2:pattern_encoding_terminal"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "statpatterns:probability_pattern_terminal"
+  }
+}

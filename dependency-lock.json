@@ -1,0 +1,47 @@
+{
+  "minecraft": "1.12.2",
+  "java": 25,
+  "cleanroom_runtime": "0.4.0",
+  "cleanroom_userdev": "0.7.14-alpha",
+  "cleanroom_installer_sha256": "882435d851a51e14b802e0a9384e4a05cfbb3890fca435c40c494af75e5a166f",
+  "ae2s": {
+    "version": "1.1.0+a47dfe029",
+    "source_commit": "a47dfe029305eead8750fbaa7c79a538e1a481ba",
+    "modid": "ae2",
+    "identity": "https://www.mcmod.cn/class/28382.html",
+    "runtime": {
+      "file": "AppliedEnergistics2-Supergiant-1.1.0+a47dfe029.jar",
+      "sha256": "7d82003578a820bf3dce121d98fd08911c8e5dcbe558e6158f6cc18558e98233"
+    },
+    "dev": {
+      "file": "AppliedEnergistics2-Supergiant-1.1.0+a47dfe029-dev.jar",
+      "sha256": "c7fc3c90220dd1d6eaed2ae51cfb45c2ad95b99f65af4d60e1f579b168330ce5"
+    }
+  },
+  "ponder": {
+    "version": "1.4.0",
+    "modid": "ponder-legacy",
+    "optional": true,
+    "file": "ponder-legacy-1.4.0.jar",
+    "url": "https://github.com/mcyudream/ponder-legacy/releases/download/v1.4.0/ponder-legacy-1.4.0.jar",
+    "sha256": "4c02d70c6f38ddf5305fa4be47a5e410e693c57f2cd8576ed5f78f8b7f32f14b"
+  },
+  "crafttweaker": {
+    "version": "4.1.20.698",
+    "optional": "required only with Ponder",
+    "group": "maven.modrinth",
+    "module": "crafttweaker",
+    "file": "crafttweaker-4.1.20.698.jar",
+    "url": "https://api.modrinth.com/maven/maven/modrinth/crafttweaker/4.1.20.698/crafttweaker-4.1.20.698.jar",
+    "sha256": "b2e5e443f18d0d5bcfd1364f9ec89565e6a1e2ad4568b899c590aa5507978b27"
+  },
+  "hei": {
+    "version": "4.35.1",
+    "optional": true,
+    "group": "mezz",
+    "module": "jei",
+    "file": "jei-4.35.1.jar",
+    "url": "https://maven.cleanroommc.com/mezz/jei/4.35.1/jei-4.35.1.jar",
+    "sha256": "8777b115592519ea0b077032988301853b39794edbb67f54b54cbef6715b283b"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/TaoLe-si/Probability-Pattern",
+  "commit": "40e0c918b2ea8c9e595fafece951db50f5120262",
+  "version": "1.0.1",
+  "license": "LGPL-3.0-or-later",
+  "target": {
+    "minecraft": "1.12.2",
+    "cleanroom": "0.4.0",
+    "java": 25,
+    "ae2s": "1.1.0+a47dfe029"
+  }
+}
