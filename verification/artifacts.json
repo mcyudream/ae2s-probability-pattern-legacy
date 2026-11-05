@@ -1,14 +1,14 @@
 {
-  "ae2s-probability-pattern-legacy-1.0.1-sources.jar": {
-    "sha256": "e8d6cb71cd8b2b1eaca7b349277c81cda3b57b82dec93bea0f9fa51dc0e708ed",
-    "bytes": 40479
+  "ae2s-probability-pattern-legacy-1.0.2-mcp.jar": {
+    "sha256": "e87ed1921897aa70fd15a79846ec38eb2bf994b248999cf1788b3d97288f98bf",
+    "bytes": 80183
   },
-  "ae2s-probability-pattern-legacy-1.0.1-mcp.jar": {
-    "sha256": "eb3aa3b6a395b6a2e008c2fad90715041e9cf0fdb4c1e3f769c5a44873c58c46",
-    "bytes": 80076
+  "ae2s-probability-pattern-legacy-1.0.2-sources.jar": {
+    "sha256": "539db8d42b21bd548b5648d59d0d3689d5e5b55f4df58c1b92e390fb20cb285c",
+    "bytes": 40586
   },
-  "ae2s-probability-pattern-legacy-1.0.1.jar": {
-    "sha256": "6ef33ddf52f728cc555afc0029bd0b90cd25d1f3263b74365235b5bffe1b3969",
-    "bytes": 81974
+  "ae2s-probability-pattern-legacy-1.0.2.jar": {
+    "sha256": "bc663fffdf69c8433a84fd31f9af8e7de5d0266b3e3985a2b83de47156a044c5",
+    "bytes": 82081
   }
 }

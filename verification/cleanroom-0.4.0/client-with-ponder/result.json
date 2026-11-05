@@ -20,14 +20,16 @@
       "Real native providers feed external chest machines, return chain output, finish CPU and conserve exact inputs",
       "A repeated request after intermediate stock changes sizes only the missing intermediate quantity",
       "Packaged client enters world and completes the real chained CPU job",
+      "Real item display names and tooltip titles have no .name suffix (blank/encoded pattern, wired/wireless terminal): en_us [Probability Pattern, Probability Pattern Encoding Terminal, Wireless Probability Pattern Terminal, Probability Pattern]",
       "Real wired GUI action packets change chance/confidence and encode on the server",
       "Rendered wired-en_us.png without OpenGL errors",
+      "Real item display names and tooltip titles have no .name suffix (blank/encoded pattern, wired/wireless terminal): zh_cn [\u6982\u7387\u6837\u677f, \u6982\u7387\u6837\u677f\u7f16\u7801\u7ec8\u7aef, \u65e0\u7ebf\u6982\u7387\u6837\u677f\u7f16\u7801\u7ec8\u7aef, \u6982\u7387\u6837\u677f]",
       "Rendered wired-zh_cn.png without OpenGL errors",
       "Rendered wireless-en_us.png without OpenGL errors",
       "Charged/linked wireless terminal encodes through native packets and retains settings in AE2S universal terminal",
       "Rendered universal-en_us.png without OpenGL errors",
-      "Rendered hei-transfer-en_us.png without OpenGL errors",
       "Actual HEI transfer handler imports ingredients, extracts 42% chance and sends primary-only recipe to server",
+      "Rendered hei-transfer-en_us.png without OpenGL errors",
       "Optional Ponder registers three subjects, loads structure, plays full timeline and rewinds: en_us",
       "Rendered ponder-en_us.png without OpenGL errors",
       "Optional Ponder registers three subjects, loads structure, plays full timeline and rewinds: zh_cn",
@@ -36,7 +38,10 @@
     "planned_iron": 80,
     "planned_gold": 30,
     "machine_iron_attempts": 40,
-    "machine_gold_attempts": 10
+    "machine_gold_attempts": 10,
+    "phase": 6,
+    "server_ticks": 12,
+    "fixture_chunks_forced": 4
   },
   "result": "FUNCTIONAL_PASS"
 }

@@ -1,0 +1,34 @@
+{
+  "cleanroom": "0.4.0",
+  "side": "client",
+  "exit": 0,
+  "loader_version_seen": true,
+  "server_ready": false,
+  "timed_out": false,
+  "gameplay_report": {
+    "result": "FAIL",
+    "cleanroom": "0.4.0",
+    "java": "25.0.5",
+    "ae2s": "1.1.0+a47dfe029",
+    "ponder": false,
+    "checks": [
+      "Cleanroom 0.4.0 packaged addon creates native powered provider/CPU/storage/terminal nodes",
+      "Wired encoding consumes one blank; probability/confidence, multi-output amount and ghost slots round-trip",
+      "Per-request CPU task identities and scaled inputs survive actual AE2S pattern serialization",
+      "Native planner sizes both probability stages independently, including two outputs per success",
+      "Actual native CPU saves and reloads the pending scaled job before machine execution",
+      "Real native providers feed external chest machines, return chain output, finish CPU and conserve exact inputs",
+      "A repeated request after intermediate stock changes sizes only the missing intermediate quantity",
+      "Packaged client enters world and completes the real chained CPU job"
+    ],
+    "planned_iron": 80,
+    "planned_gold": 30,
+    "machine_iron_attempts": 40,
+    "machine_gold_attempts": 10,
+    "phase": 6,
+    "server_ticks": 14,
+    "fixture_chunks_forced": 4,
+    "failure": "java.lang.IllegalStateException: Item display name is incorrect in en_us: statpatterns:probability_pattern = Processing Pattern (Probability).name; expected Probability Pattern\n\tat com.tz.statpatterns.verification.RuntimeVerification.require(RuntimeVerification.java:103)\n\tat com.tz.statpatterns.verification.ClientVerification.verifyItemNames(ClientVerification.java:238)\n\tat com.tz.statpatterns.verification.ClientVerification.tick(ClientVerification.java:76)\n\tat net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:79)\n\tat net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:204)\n\tat net.minecraftforge.fml.common.FMLCommonHandler.onPostClientTick(FMLCommonHandler.java:360)\n\tat net.minecraft.client.Minecraft.func_71407_l(Minecraft.java:1932)\n\tat net.minecraft.client.Minecraft.func_71411_J(Minecraft.java:1088)\n\tat net.minecraft.client.Minecraft.func_99999_d(Minecraft.java:399)\n\tat net.minecraft.client.main.Main.main(SourceFile:123)\n\tat top.outlands.foundation.LaunchHandler.launch(LaunchHandler.java:125)\n\tat top.outlands.foundation.boot.Foundation.main(Foundation.java:42)\n"
+  },
+  "result": "FAIL"
+}

@@ -1,6 +1,6 @@
 {
   "cleanroom": "0.4.0",
-  "artifact_sha256": "6ef33ddf52f728cc555afc0029bd0b90cd25d1f3263b74365235b5bffe1b3969",
+  "artifact_sha256": "bc663fffdf69c8433a84fd31f9af8e7de5d0266b3e3985a2b83de47156a044c5",
   "scenarios": {
     "server-without-ponder": "FUNCTIONAL_PASS",
     "client-without-ponder": "FUNCTIONAL_PASS",

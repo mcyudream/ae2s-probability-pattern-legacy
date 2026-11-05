@@ -4,9 +4,9 @@
   "userdev": false,
   "installer_sha256": "882435d851a51e14b802e0a9384e4a05cfbb3890fca435c40c494af75e5a166f",
   "jars": {
-    "ae2s-probability-pattern-legacy-1.0.1.jar": "6ef33ddf52f728cc555afc0029bd0b90cd25d1f3263b74365235b5bffe1b3969",
+    "ae2s-probability-pattern-legacy-1.0.2.jar": "bc663fffdf69c8433a84fd31f9af8e7de5d0266b3e3985a2b83de47156a044c5",
     "AppliedEnergistics2-Supergiant-1.1.0+a47dfe029.jar": "7d82003578a820bf3dce121d98fd08911c8e5dcbe558e6158f6cc18558e98233",
-    "statpatterns-verification.jar": "2c06fc53fa0bc761f5bf12e350feaf15da3e6d0bd7a39bb7e5e8730b8594ebe0",
+    "statpatterns-verification.jar": "2f5c087ac1bf357c7b27aaf53910c08625553bb6613a6bafce16fa347a7391d2",
     "jei-4.35.1.jar": "8777b115592519ea0b077032988301853b39794edbb67f54b54cbef6715b283b"
   },
   "libraries": {

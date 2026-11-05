@@ -1,7 +1,5 @@
-item.statpatterns.probability_pattern=处理样板（概率）
-item.statpatterns.probability_pattern_terminal=ME概率样板编码终端
+# Minecraft 1.12.2 appends .name after getTranslationKeyInefficiently; keep only suffixed item keys.
 block.statpatterns.probability_pattern_terminal=ME概率样板编码终端
-item.statpatterns.wireless_probability_pattern_terminal=无线概率样板编码终端
 itemGroup.statpatterns=应用能源2 - 概率样板
 container.statpatterns.probability_pattern_terminal=概率样板编码
 container.statpatterns.inputs=每次尝试输入

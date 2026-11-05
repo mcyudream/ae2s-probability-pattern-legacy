@@ -1,8 +1,8 @@
 # Cleanroom 0.4.0 正式版成品验收
 
-日期：2026-11-05。成品：`ae2s-probability-pattern-legacy-1.0.1.jar`。
+日期：2026-11-05。成品：`ae2s-probability-pattern-legacy-1.0.2.jar`。
 
-SHA-256：`6ef33ddf52f728cc555afc0029bd0b90cd25d1f3263b74365235b5bffe1b3969`。
+SHA-256：`bc663fffdf69c8433a84fd31f9af8e7de5d0266b3e3985a2b83de47156a044c5`。
 
 使用官方 Cleanroom **0.4.0（无 `-alpha`）** 安装器配方及原版 Minecraft 1.12.2 安装文件，
 Java **25.0.5**，AE2S **1.1.0+a47dfe029**。运行 classpath 没有 userdev 或 MCP 开发游戏包。
@@ -18,6 +18,20 @@ Java **25.0.5**，AE2S **1.1.0+a47dfe029**。运行 classpath 没有 userdev 或
 最终四组合由 `DISPLAY=:97 python3 tools/verify.py --with-hei` 重现。HEI 验收版本为 `4.35.1`。
 编译与发布包检查通过，**16 项单元测试，0 失败、0 跳过**；机器可读汇总见 [summary.json](summary.json)。
 发布 jar 未包含测试 harness、Minecraft、AE2S、Ponder 或 HEI 的类。
+
+## 物品名称 `.name` 回归
+
+1.0.1 语言资源保留了新版无后缀键，例如 `item.statpatterns.probability_pattern`，同时又有
+1.12.2 使用的 `.name` 键。原版 `getTranslationKeyInefficiently` 提前翻译基础键，随后名称流程
+再追加 `.name`，产生 `Processing Pattern (Probability).name`。
+修复后只保留这三种物品的 `.name` 键。
+
+新增真实客户端断言在旧版 1.0.1 主 JAR 上准确失败，见
+[预期失败记录](regressions/item-names-1.0.1/result.json) 和
+[旧版运行环境](regressions/item-names-1.0.1/runtime.json)。
+1.0.2 四组验收均通过；有 / 无 Ponder 的客户端分别在 `en_us` 和 `zh_cn` 检查空白样板、
+已编码样板、有线和无线终端的 `ItemStack.getDisplayName()` 及提示框首行，断言完整显示文本。
+检查结果和正确名称保存在各客户端 `gameplay/report.json` 中。
 
 ## 核心功能证据
 

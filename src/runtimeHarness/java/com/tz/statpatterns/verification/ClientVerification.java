@@ -73,6 +73,7 @@ public final class ClientVerification {
                 case 1 -> {
                     if (mc.world == null || mc.player == null || !RuntimeVerification.gameplayDone) return;
                     check("Packaged client enters world and completes the real chained CPU job");
+                    language("en_us"); verifyItemNames("en_us");
                     server(() -> {
                         player().setPositionAndUpdate(.5, 80, 5.5);
                         player().capabilities.isFlying = true; player().sendPlayerAbilities();
@@ -110,7 +111,7 @@ public final class ClientVerification {
                     capture = "wired-en_us.png"; phase = 4;
                 }
                 case 4 -> {
-                    language("zh_cn"); capture = "wired-zh_cn.png"; phase++;
+                    language("zh_cn"); verifyItemNames("zh_cn"); capture = "wired-zh_cn.png"; phase++;
                 }
                 case 5 -> {
                     mc.player.closeScreen(); language("en_us");
@@ -219,6 +220,30 @@ public final class ClientVerification {
     private void language(String code) {
         mc.gameSettings.language = code;
         mc.getLanguageManager().setCurrentLanguage(mc.getLanguageManager().getLanguage(code)); mc.refreshResources();
+    }
+    private void verifyItemNames(String language) {
+        var stacks = java.util.List.of(new ItemStack(StatPatternsMod.PATTERN),
+            new ItemStack(StatPatternsMod.TERMINAL), new ItemStack(StatPatternsMod.WIRELESS),
+            StatPatternsDetails.encode(java.util.List.of(new ae2.api.stacks.GenericStack(
+                ae2.api.stacks.AEItemKey.of(net.minecraft.init.Items.IRON_INGOT), 1)),
+                java.util.List.of(new ae2.api.stacks.GenericStack(
+                    ae2.api.stacks.AEItemKey.of(net.minecraft.init.Items.GOLD_INGOT), 1)), .5, .05));
+        String[] expected = language.equals("zh_cn")
+            ? new String[] { "概率样板", "概率样板编码终端", "无线概率样板编码终端", "概率样板" }
+            : new String[] { "Probability Pattern", "Probability Pattern Encoding Terminal",
+                "Wireless Probability Pattern Terminal", "Probability Pattern" };
+        for (int i = 0; i < stacks.size(); i++) {
+            var stack = stacks.get(i);
+            var name = stack.getDisplayName();
+            require(expected[i].equals(name), "Item display name is incorrect in " + language + ": "
+                + stack.getItem().getRegistryName() + " = " + name + "; expected " + expected[i]);
+            var tooltip = stack.getTooltip(mc.player, net.minecraft.client.util.ITooltipFlag.TooltipFlags.NORMAL);
+            require(!tooltip.isEmpty() && expected[i].equals(
+                net.minecraft.util.text.TextFormatting.getTextWithoutFormattingCodes(tooltip.getFirst())),
+                "Item tooltip name is incorrect in " + language + ": " + tooltip);
+        }
+        check("Real item display names and tooltip titles have no .name suffix (blank/encoded pattern, wired/wireless terminal): "
+            + language + " " + java.util.Arrays.toString(expected));
     }
     @SubscribeEvent public void render(TickEvent.RenderTickEvent event) {
         if (event.phase != TickEvent.Phase.END || capture == null) return;

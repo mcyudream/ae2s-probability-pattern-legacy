@@ -15,8 +15,8 @@ Mod ID：`ae2s-probability-pattern-legacy`。
 
 ## 安装
 
-从[正式版](https://github.com/mcyudream/ae2s-probability-pattern-legacy/releases/tag/v1.0.1)下载
-`ae2s-probability-pattern-legacy-1.0.1.jar`，客户端和服务器均需安装。
+从[正式版](https://github.com/mcyudream/ae2s-probability-pattern-legacy/releases/tag/v1.0.2)下载
+`ae2s-probability-pattern-legacy-1.0.2.jar`，客户端和服务器均需安装。
 必装 AE2S；本次实际验收版本为 `1.1.0+a47dfe029`，安装包 SHA 和固定源码见
 [依赖锁](dependency-lock.json)。AE2UEL、原版 AE2 1.12.2 不在本次支持范围内。
 
@@ -56,9 +56,9 @@ AE2S 与 Ponder 的编译依赖会校验哈希，运行库不打入本 Mod。
 
 | 文件 | 用途 |
 | --- | --- |
-| `ae2s-probability-pattern-legacy-1.0.1.jar` | 安装到 `mods/` 的 SRG 成品 |
-| `ae2s-probability-pattern-legacy-1.0.1-mcp.jar` | 开发依赖 |
-| `ae2s-probability-pattern-legacy-1.0.1-sources.jar` | 源码 |
+| `ae2s-probability-pattern-legacy-1.0.2.jar` | 安装到 `mods/` 的 SRG 成品 |
+| `ae2s-probability-pattern-legacy-1.0.2-mcp.jar` | 开发依赖 |
+| `ae2s-probability-pattern-legacy-1.0.2-sources.jar` | 源码 |
 | `build/verification/statpatterns-verification.jar` | 独立验收工具，只用于测试 |
 
 自动验收入口：`python3 tools/verify.py`。需已准备 Minecraft 1.12.2 运行资源和 Java 25，客户端需可用的
@@ -69,9 +69,9 @@ AE2S 与 Ponder 的编译依赖会校验哈希，运行库不打入本 Mod。
 CI 使用 Temurin 25.0.5+8 构建、运行单元测试，并在 Xvfb 下重跑四组正式 Cleanroom 0.4.0
 验收，包含 HEI 和中英文 Ponder。推送与包内版本一致的 `v*` 标签后，只有全部检查通过、
 且安装包 SHA-256 与已验收记录一致时才创建正式 GitHub Release。发行说明见
-[1.0.1](docs/releases/1.0.1.md)；发布门禁和产物收集入口分别为
-`python3 tools/verify_package.py --require-verified-hash --tag v1.0.1` 和
-`python3 tools/prepare_release.py --tag v1.0.1`。
+[1.0.2](docs/releases/1.0.2.md)；发布门禁和产物收集入口分别为
+`python3 tools/verify_package.py --require-verified-hash --tag v1.0.2` 和
+`python3 tools/prepare_release.py --tag v1.0.2`。
 
 ## 来源和许可证
 

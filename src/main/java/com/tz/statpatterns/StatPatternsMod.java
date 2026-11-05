@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = StatPatternsMod.ID, name = "AE2S Probability Pattern Legacy", version = "1.0.1",
+@Mod(modid = StatPatternsMod.ID, name = "AE2S Probability Pattern Legacy", version = "1.0.2",
     acceptedMinecraftVersions = "[1.12.2]",
     dependencies = "required-after:cleanroom@[0.4.0,);required-after:ae2@[1.1.0,1.2.0);after:ponder-legacy")
 @Mod.EventBusSubscriber(modid = StatPatternsMod.ID)

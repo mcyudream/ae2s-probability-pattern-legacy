@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parent.parent
 GRADLE = Path(os.environ.get("GRADLE_USER_HOME", Path.home() / ".gradle"))
 LOCK = json.loads((ROOT / "dependency-lock.json").read_text())
+IDENTITY = json.loads((ROOT / "legacy-identity.json").read_text())
 
 
 def digest(path):
@@ -55,7 +56,8 @@ def main():
     if (jdk / "bin/java").is_file():
         environment["JAVA_HOME"] = str(jdk)
     environment["ALSOFT_DRIVERS"] = "null"
-    artifact = ROOT / "build/libs/ae2s-probability-pattern-legacy-1.0.1.jar"
+    version = IDENTITY["release_tag"].removeprefix("v")
+    artifact = ROOT / "build/libs" / f"{IDENTITY['modid']}-{version}.jar"
     harness = ROOT / "build/verification/statpatterns-verification.jar"
     ae2s = ROOT / "build/dependencies/ae2-supergiant" / LOCK["ae2s"]["runtime"]["file"]
     for file in (artifact, harness, ae2s):

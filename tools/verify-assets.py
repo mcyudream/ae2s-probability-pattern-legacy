@@ -23,6 +23,10 @@ for language in (RESOURCES / "assets/statpatterns/lang").glob("*.lang"):
         keys.add(key)
     for key in ("statpatterns.probability", "statpatterns.confidence", "statpatterns.primary_only"):
         assert key in keys, f"Missing control translation: {language}: {key}"
+    for item in ("probability_pattern", "probability_pattern_terminal", "wireless_probability_pattern_terminal"):
+        base = "item.statpatterns." + item
+        assert base + ".name" in keys, f"Missing 1.12.2 item name: {language}: {base}"
+        assert base not in keys, f"Unsuffixed key causes a translated .name suffix in 1.12.2: {language}: {base}"
 for source in (ROOT / "src/main/java").rglob("*.java"):
     text = source.read_text()
     assert "net.neoforged" not in text and "net.minecraft.world.item" not in text, source

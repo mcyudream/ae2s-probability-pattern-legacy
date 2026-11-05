@@ -16,5 +16,8 @@
   "planned_iron": 80,
   "planned_gold": 30,
   "machine_iron_attempts": 40,
-  "machine_gold_attempts": 10
+  "machine_gold_attempts": 10,
+  "phase": 6,
+  "server_ticks": 16,
+  "fixture_chunks_forced": 4
 }

@@ -1,7 +1,5 @@
-item.statpatterns.probability_pattern=Processing Pattern (Probability)
-item.statpatterns.probability_pattern_terminal=ME Probability Pattern Encoding Terminal
+# Minecraft 1.12.2 appends .name after getTranslationKeyInefficiently; keep only suffixed item keys.
 block.statpatterns.probability_pattern_terminal=ME Probability Pattern Encoding Terminal
-item.statpatterns.wireless_probability_pattern_terminal=Wireless Probability Pattern Encoding Terminal
 itemGroup.statpatterns=Applied Energistics 2 | Probability Patterns
 container.statpatterns.probability_pattern_terminal=Probability Pattern Encoding
 container.statpatterns.inputs=Inputs per Attempt
