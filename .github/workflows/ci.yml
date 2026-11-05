@@ -34,7 +34,7 @@ jobs:
       - name: Install client verification libraries
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y xvfb xauth libgl1-mesa-dri libglx-mesa0 libopenal1
+          sudo apt-get install --no-install-recommends -y xvfb xauth libgl1-mesa-dri libglx-mesa0 libopenal1 libflite1
       - name: Run official Cleanroom 0.4.0 client and server with and without Ponder
         run: xvfb-run -a -s '-screen 0 1920x1080x24' python3 tools/verify.py --with-hei
       - name: Verify runtime reports match the built jar

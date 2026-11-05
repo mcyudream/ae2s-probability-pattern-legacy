@@ -50,6 +50,7 @@ public final class ClientVerification {
     private ContainerPatternEncodingTerm container() { return (ContainerPatternEncodingTerm) mc.player.openContainer; }
     @SubscribeEvent public void tick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END || done) return;
+        if (RuntimeVerification.failed) { done = true; mc.shutdown(); return; }
         ticks++;
         if (ticks < waitUntil || capture != null) return;
         try {

@@ -37,7 +37,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -45,6 +47,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -54,11 +57,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public final class RuntimeVerification {
     public static RuntimeVerification INSTANCE;
     public static volatile boolean gameplayDone;
+    public static volatile boolean failed;
     public static volatile StatPatternsTerminalPart terminal;
     public static final BlockPos ORIGIN = new BlockPos(0, 80, 0), TERMINAL = ORIGIN.south(4);
     public final List<String> checks = new ArrayList<>();
     private MinecraftServer server;
     private WorldServer world;
+    private ForgeChunkManager.Ticket fixtureTicket;
     private TileCreativeEnergyCell power;
     private TileCraftingUnit cpu;
     private TileDrive drive;
@@ -71,12 +76,28 @@ public final class RuntimeVerification {
 
     @Mod.EventHandler public void init(FMLInitializationEvent event) throws Exception {
         INSTANCE = this;
+        ForgeChunkManager.setForcedChunkLoadingCallback(this,
+            (tickets, level) -> tickets.forEach(ForgeChunkManager::releaseTicket));
         MinecraftForge.EVENT_BUS.register(this);
         if (event.getSide().isClient())
             Class.forName("com.tz.statpatterns.verification.ClientVerification").getMethod("install").invoke(null);
     }
     @Mod.EventHandler public void started(FMLServerStartedEvent event) {
         server = FMLCommonHandler.instance().getMinecraftServerInstance(); world = server.getWorld(0);
+        // Superflat spawn selection can place the player thousands of blocks from the fixture.
+        // Keep every machine chunk ticking independently of client join/loading timing.
+        world.setSpawnPoint(ORIGIN.south(5));
+        world.getGameRules().setOrCreateGameRule("spawnRadius", "0");
+        fixtureTicket = ForgeChunkManager.requestTicket(this, world, ForgeChunkManager.Type.NORMAL);
+        require(fixtureTicket != null, "Could not keep verification machine chunks loaded");
+        for (int x = -1; x <= 0; x++) for (int z = -1; z <= 0; z++)
+            ForgeChunkManager.forceChunk(fixtureTicket, new ChunkPos(x, z));
+    }
+    @Mod.EventHandler public void stopping(FMLServerStoppingEvent event) {
+        if (fixtureTicket != null) {
+            ForgeChunkManager.releaseTicket(fixtureTicket);
+            fixtureTicket = null;
+        }
     }
     public static void require(boolean value, String description) {
         if (!value) throw new IllegalStateException(description);
@@ -96,11 +117,14 @@ public final class RuntimeVerification {
             report.put("checks", List.copyOf(checks));
             report.put("planned_iron", expectedIron); report.put("planned_gold", expectedGold);
             report.put("machine_iron_attempts", ironAttempts); report.put("machine_gold_attempts", goldAttempts);
+            report.put("phase", phase); report.put("server_ticks", ticks);
+            report.put("fixture_chunks_forced", fixtureTicket == null ? 0 : fixtureTicket.getChunkList().size());
             if (error != null) {
                 var trace = new java.io.StringWriter(); error.printStackTrace(new java.io.PrintWriter(trace));
                 report.put("failure", trace.toString());
             }
             Files.writeString(out.resolve("report.json"), new GsonBuilder().setPrettyPrinting().create().toJson(report));
+            if ("FAIL".equals(result)) failed = true;
         } catch (Exception failure) { throw new RuntimeException(failure); }
     }
     @SubscribeEvent public void tick(TickEvent.ServerTickEvent event) {
